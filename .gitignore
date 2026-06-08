@@ -6,6 +6,9 @@ __pycache__/
 build/
 dist/
 
+# MCPB bundle (build artifact; rebuild with `mcpb pack`)
+*.mcpb
+
 # Virtual environments
 .venv/
 venv/

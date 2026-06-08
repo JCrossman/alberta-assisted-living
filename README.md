@@ -85,10 +85,44 @@ at the tools directly, use the MCP Inspector:
 npx @modelcontextprotocol/inspector uv run python -m alberta_assisted_living.server
 ```
 
-## Connect it to Claude Desktop
+## Install in Claude Desktop (one-click, `.mcpb`)
 
-Add this to your `claude_desktop_config.json`, using **absolute** paths (Claude
-Desktop launches the server with a minimal `PATH`), then restart Claude Desktop.
+The easiest way to add this to Claude Desktop is the bundled **`.mcpb`** file
+(MCP Bundle): **double-click `alberta-assisted-living.mcpb`** (or open Claude
+Desktop → Settings → Extensions → install from file). Claude Desktop shows an
+install dialog, and you're done — no JSON to edit.
+
+**Prerequisites** (the bundle stays tiny by *not* vendoring Python packages —
+they can't be shipped portably across macOS/Windows/Linux — so they resolve on
+your machine on first launch):
+
+- [uv](https://docs.astral.sh/uv/) installed and on your `PATH`.
+- Python 3.11+ (uv can install one for you).
+
+The bundle uses the **UV runtime** (`server.type: "uv"`): on first launch, `uv`
+reads `pyproject.toml` / `uv.lock` and sets up dependencies automatically, for
+your platform. The first start may take a few seconds while that happens.
+
+> If Claude Desktop reports it can't find `uv`, it isn't on the GUI's `PATH`
+> (common on macOS, where apps get a minimal `PATH`). Install uv system-wide, or
+> use the manual config below with an **absolute** path to `uv`.
+
+### Build the `.mcpb` yourself
+
+The bundle is a reproducible build of this repo (it is not committed):
+
+```bash
+npm install -g @anthropic-ai/mcpb   # one-time
+mcpb pack . alberta-assisted-living.mcpb
+```
+
+`manifest.json` and `.mcpbignore` in this repo define the bundle.
+
+## Connect it to Claude Desktop (manual config)
+
+Prefer editing config yourself? Add this to your `claude_desktop_config.json`,
+using **absolute** paths (Claude Desktop launches the server with a minimal
+`PATH`), then restart Claude Desktop.
 
 ```json
 {

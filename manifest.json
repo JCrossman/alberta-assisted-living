@@ -1,0 +1,65 @@
+{
+  "manifest_version": "0.4",
+  "name": "alberta-assisted-living",
+  "display_name": "Alberta Assisted Living (Open State)",
+  "version": "0.1.0",
+  "description": "Find Alberta continuing care, supportive living, and seniors' housing through your assistant - accessibility first.",
+  "long_description": "An independent, public-interest tool built on the Government of Alberta's public Assisted Living Navigator data. Search continuing care, supportive living, and seniors' housing in plain language - by name or near a place - with accessibility as a first-class filter. Read-only: it finds and explains options and points you to the facility and Alberta Health Services. It never applies, reserves a space, pays, or stores credentials. Part of The Open State, a reference implementation of the Civic Access Protocol. Not operated by or endorsed by the Government of Alberta.",
+  "author": {
+    "name": "The Open State",
+    "url": "https://github.com/JCrossman/alberta-assisted-living"
+  },
+  "homepage": "https://github.com/JCrossman/alberta-assisted-living",
+  "documentation": "https://github.com/JCrossman/alberta-assisted-living/blob/main/README.md",
+  "license": "MIT",
+  "keywords": [
+    "alberta",
+    "assisted living",
+    "continuing care",
+    "seniors",
+    "accessibility",
+    "civic-access-protocol",
+    "open-state"
+  ],
+  "server": {
+    "type": "uv",
+    "entry_point": "src/alberta_assisted_living/server.py",
+    "mcp_config": {
+      "command": "uv",
+      "args": [
+        "run",
+        "--directory",
+        "${__dirname}",
+        "python",
+        "-m",
+        "alberta_assisted_living.server"
+      ],
+      "env": {}
+    }
+  },
+  "tools_generated": false,
+  "tools": [
+    {
+      "name": "search_facilities_by_name",
+      "description": "Find Alberta assisted living and continuing care facilities by name."
+    },
+    {
+      "name": "find_facilities_near",
+      "description": "Find facilities near a place (or coordinates), nearest first, filtered by accessibility, care type, room type, amenities, and current vacancy."
+    },
+    {
+      "name": "get_facility_details",
+      "description": "Full plain-language detail for one facility: accessibility first, contact, care types, spaces, pricing, services, accreditation, official standards record, and photos."
+    },
+    {
+      "name": "explain_care_options",
+      "description": "Plain-language guide to Alberta's care types, AHS funding and placement, and the search filters."
+    }
+  ],
+  "compatibility": {
+    "platforms": ["darwin", "win32", "linux"],
+    "runtimes": {
+      "python": ">=3.11"
+    }
+  }
+}
