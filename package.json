@@ -1,0 +1,20 @@
+{
+  "name": "alberta-assisted-living",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "The Open State: Alberta Assisted Living - a Civic Access Protocol MCP server for Alberta's Assisted Living Navigator (Node, local stdio).",
+  "license": "MIT",
+  "scripts": {
+    "start": "node src/server.mjs",
+    "test": "node --test",
+    "build": "node scripts/build.mjs"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.20.0",
+    "zod": "^3.25.0"
+  },
+  "devDependencies": {
+    "esbuild": "^0.25.0"
+  }
+}

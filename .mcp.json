@@ -1,15 +1,8 @@
 {
   "mcpServers": {
     "alberta-assisted-living": {
-      "command": "uv",
-      "args": [
-        "run",
-        "--directory",
-        ".",
-        "python",
-        "-m",
-        "alberta_assisted_living.server"
-      ]
+      "command": "node",
+      "args": ["src/index.mjs"]
     }
   }
 }

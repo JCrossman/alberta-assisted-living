@@ -15,6 +15,9 @@ your own machine (Claude Desktop, Claude Code, or any MCP client). It is
 to Alberta Health Services. It **never applies, reserves a space, pays, or
 stores credentials.**
 
+Built in **Node.js** (matching the Camp MCP), using the official
+[`@modelcontextprotocol/sdk`](https://github.com/modelcontextprotocol/typescript-sdk).
+
 > **Independent and unaffiliated.** This is an independent, public-interest tool
 > built on Alberta's *public* Assisted Living Navigator data. It is **not
 > operated by or endorsed by the Government of Alberta.**
@@ -60,118 +63,80 @@ facility, or — for a publicly funded space — Alberta Health Services arrange
 placement through a case manager (call Health Link at 811). This tool never acts
 for you.
 
-## Requirements
-
-- Python 3.11+
-- [uv](https://docs.astral.sh/uv/)
-
-## Setup
-
-```bash
-cd alberta-assisted-living
-uv sync
-```
-
-## Run (local, stdio)
-
-```bash
-uv run python -m alberta_assisted_living.server
-```
-
-The server speaks MCP over stdio and waits for an assistant to connect. To poke
-at the tools directly, use the MCP Inspector:
-
-```bash
-npx @modelcontextprotocol/inspector uv run python -m alberta_assisted_living.server
-```
-
 ## Install in Claude Desktop (one-click, `.mcpb`)
 
-The easiest way to add this to Claude Desktop is the bundled **`.mcpb`** file
-(MCP Bundle): **double-click `alberta-assisted-living.mcpb`** (or open Claude
+The easiest way: **double-click `alberta-assisted-living.mcpb`** (or Claude
 Desktop → Settings → Extensions → install from file). Claude Desktop shows an
-install dialog, and you're done — no JSON to edit.
+install dialog and you're done — no JSON to edit.
 
-**Prerequisites** (the bundle stays tiny by *not* vendoring Python packages —
-they can't be shipped portably across macOS/Windows/Linux — so they resolve on
-your machine on first launch):
+**No prerequisites.** The whole server (including the MCP SDK) is bundled into a
+single self-contained `server/index.mjs` and runs on the **Node runtime that
+Claude Desktop already ships**. There is nothing to install — no Node, no Python,
+no `uv`, no dependency download on first launch.
 
-- [uv](https://docs.astral.sh/uv/) installed and on your `PATH`.
-- Python 3.11+ (uv can install one for you).
+> Behind a corporate TLS-intercepting proxy? Node honours `NODE_EXTRA_CA_CERTS`;
+> point it at your proxy's CA bundle (via the extension's environment, or the
+> manual config below).
 
-The bundle uses the **UV runtime** (`server.type: "uv"`): on first launch, `uv`
-reads `pyproject.toml` / `uv.lock` and sets up dependencies automatically, for
-your platform. The first start may take a few seconds while that happens.
+## Connect it to Claude Code
 
-> If Claude Desktop reports it can't find `uv`, it isn't on the GUI's `PATH`
-> (common on macOS, where apps get a minimal `PATH`). Install uv system-wide, or
-> use the manual config below with an **absolute** path to `uv`.
+The repo ships a [`.mcp.json`](.mcp.json) that registers the server for
+[Claude Code](https://claude.com/claude-code) as `node src/index.mjs`. Run
+`npm install` once, then open the repo in Claude Code and approve the server.
 
-### Build the `.mcpb` yourself
-
-The bundle is a reproducible build of this repo (it is not committed):
+## Run it directly
 
 ```bash
-npm install -g @anthropic-ai/mcpb   # one-time
-mcpb pack . alberta-assisted-living.mcpb
+npm install
+npm start            # = node src/index.mjs  (speaks MCP over stdio)
 ```
 
-`manifest.json` and `.mcpbignore` in this repo define the bundle.
+To poke at the tools with the MCP Inspector:
 
-## Connect it to Claude Desktop (manual config)
+```bash
+npx @modelcontextprotocol/inspector node src/index.mjs
+```
 
-Prefer editing config yourself? Add this to your `claude_desktop_config.json`,
-using **absolute** paths (Claude Desktop launches the server with a minimal
-`PATH`), then restart Claude Desktop.
+## Manual Claude Desktop config
+
+Prefer editing config yourself? After `npm install`, add this to
+`claude_desktop_config.json` using an **absolute** path, then restart Claude
+Desktop:
 
 ```json
 {
   "mcpServers": {
     "alberta-assisted-living": {
-      "command": "/ABSOLUTE/PATH/TO/uv",
-      "args": [
-        "--directory", "/ABSOLUTE/PATH/TO/alberta-assisted-living",
-        "run", "python", "-m", "alberta_assisted_living.server"
-      ],
+      "command": "node",
+      "args": ["/ABSOLUTE/PATH/TO/alberta-assisted-living/src/index.mjs"],
       "env": {}
     }
   }
 }
 ```
 
-Find your `uv` path with `which uv` (macOS/Linux) or `where uv` (Windows).
+## Build the `.mcpb` yourself
 
-## Connect it to Claude Code
-
-The repository root ships a [`.mcp.json`](.mcp.json) that registers this server
-for [Claude Code](https://claude.com/claude-code) with a **relative**
-`--directory`, so it works for anyone who clones the repo with no per-machine
-paths to edit. Open the repo in Claude Code and approve the
-`alberta-assisted-living` server when prompted.
-
-## Run (remote, HTTP)
-
-The same tools also serve over **Streamable HTTP**, the transport a hosted,
-one-click connector would use. Flip the env switch:
+The bundle is a reproducible build of this repo (it is not committed):
 
 ```bash
-ALA_TRANSPORT=http ALA_PORT=8765 uv run python -m alberta_assisted_living.server
-# MCP endpoint:  http://127.0.0.1:8765/mcp
-# Liveness:      http://127.0.0.1:8765/health  -> {"status":"ok",...}
+npm install
+npm run build                                   # esbuild -> dist/server/index.mjs
+npx @anthropic-ai/mcpb pack dist alberta-assisted-living.mcpb
 ```
 
-`stateless_http` is on by default so multiple replicas won't break sessions, and
-an HTTP deployment applies a global rate limit for upstream politeness.
+`manifest.json`, `scripts/build.mjs`, and `src/` define the bundle.
 
 ## How it reaches the data
 
 The Navigator's data comes from a **public, unauthenticated GraphQL API**
 (`alacapacity.api.alberta.ca/graphql`). This server reads it the way the
-Navigator's own web app does — through the service's own data interface — and
-**identifies itself honestly** (it does not impersonate a browser; the API
-accepts an honest User-Agent). It uses only the read queries a citizen needs; it
-does **not** touch the operator capacity-reporting queries or any of the API's
-write operations, which require an operator login and change records.
+Navigator's own web app does — through the service's own data interface, using
+Node's built-in `fetch` — and **identifies itself honestly** (it does not
+impersonate a browser; the API accepts an honest User-Agent). It uses only the
+read queries a citizen needs; it does **not** touch the operator
+capacity-reporting queries or any of the API's write operations, which require an
+operator login and change records.
 
 "Near me" searches turn a place name into coordinates using OpenStreetMap's
 keyless **Nominatim** service. Only the place text you provide is sent, only when
@@ -184,23 +149,20 @@ All optional, via environment variables:
 
 | Variable | Default | Meaning |
 |---|---|---|
-| `ALA_TRANSPORT` | `stdio` | `stdio` (local) or `http` (Streamable HTTP). |
 | `ALA_API_URL` | the Navigator GraphQL endpoint | Upstream API URL. |
 | `ALA_USER_AGENT` | an honest identifying UA | Sent to the Navigator API. |
-| `ALA_HTTP_TIMEOUT` | `30` | Upstream request timeout (seconds). |
+| `ALA_HTTP_TIMEOUT_MS` | `30000` | Upstream request timeout (ms). |
 | `ALA_ENABLE_GEOCODING` | `true` | When `false`, location search requires coordinates. |
 | `ALA_GEOCODER_URL` | Nominatim search | Geocoding endpoint. |
 | `ALA_GEOCODER_USER_AGENT` | the `ALA_USER_AGENT` value | Identifying UA for the geocoder (Nominatim policy). |
+| `ALA_GEOCODER_TIMEOUT_MS` | `20000` | Geocoder request timeout (ms). |
 | `ALA_DEFAULT_RADIUS_KM` / `ALA_MAX_RADIUS_KM` | `25` / `200` | Search radius default and cap. |
-| `ALA_HOST` / `ALA_PORT` | `127.0.0.1` / `8000` | Bind address for `http` transport. |
-| `ALA_MCP_PATH` | `/mcp` | Path the MCP endpoint is served at (`http`). |
-| `ALA_STATELESS_HTTP` | `true` | Stateless HTTP so replicas don't break sessions. |
-| `ALA_RATE_LIMIT_RPS` / `ALA_RATE_LIMIT_BURST` | `5` / `20` | Global rate limit for the `http` transport (`<= 0` disables). |
+| `NODE_EXTRA_CA_CERTS` | — | Standard Node var; set to a CA bundle to work behind a TLS-intercepting proxy. |
 
 ## Tests
 
 ```bash
-uv run pytest
+npm test            # = node --test  (47 tests)
 ```
 
 Tests run fully offline against responses recorded from the live API — no live
@@ -220,6 +182,8 @@ Reality, recorded rather than guessed (Constitution Art. 7):
   shows no accessible features may still be worth a direct call. Summary/search
   results do not carry amenity detail — open `get_facility_details` for the full
   accessibility picture.
+- **`only_with_vacancy` is filtered on the real reported counts**, not the API's
+  `hasPotentialVacancy` flag, which (verified live) does not narrow results.
 - **Postal-code-only lookups can miss.** Nominatim does not have full Canadian
   postal-code coverage; a town or street address resolves more reliably.
 - **This tool never acts.** It finds and explains. Applying for a publicly funded

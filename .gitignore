@@ -1,27 +1,12 @@
-# Python
-__pycache__/
-*.py[cod]
-*.egg-info/
-.eggs/
-build/
+# Node
+node_modules/
+npm-debug.log*
+
+# Build output
 dist/
 
-# MCPB bundle (build artifact; rebuild with `mcpb pack`)
+# MCPB bundle (build artifact; rebuild with `npm run build && mcpb pack dist ...`)
 *.mcpb
-
-# Virtual environments
-.venv/
-venv/
-
-# uv
-.uv/
-
-# Test / tooling
-.pytest_cache/
-.ruff_cache/
-.mypy_cache/
-.coverage
-htmlcov/
 
 # Editor / OS
 .idea/

@@ -13,9 +13,8 @@ implementation that lets a citizen reach the Government of Alberta's public
 to find continuing care, supportive living, and seniors' housing. Accessibility
 is the purpose, not a feature.
 
-It is a sibling implementation to the camping reference in the `the-open-state`
-repo, and follows the same architecture (provider abstraction, FastMCP, uv,
-stdio/HTTP).
+Built in **Node.js (ESM)** with the official `@modelcontextprotocol/sdk`, to
+match the Camp MCP. Speaks MCP over **stdio**.
 
 ## Read these, in order
 
@@ -27,24 +26,30 @@ stdio/HTTP).
 3. **`docs/alberta-assisted-living-api-findings.md`** — the verified API
    contract. Reality wins over assumptions; this records what the API actually
    does (including its quirks).
-4. **`README.md`** — what it does, how to run and connect it.
+4. **`README.md`** — what it does, how to run, build, and connect it.
 
-## Architecture (mirrors the reference implementation)
+## Architecture
 
 ```
 AI assistant
-   | (MCP)
-MCP tools (server.py)          # plain-language, platform-agnostic
+   | (MCP, stdio)
+src/index.mjs                       # entry: wires deps, connects StdioServerTransport
    |
-FacilityProvider (base.py)     # abstract interface + normalized shapes
+src/server.mjs  (createServer)      # registers the 4 tools (McpServer.registerTool)
    |
-NavigatorProvider              # maps the Navigator GraphQL API -> shapes
+src/providers/navigator-provider.mjs  # maps the Navigator GraphQL -> normalized objects
    |
-NavigatorClient (client.py)    # thin GraphQL HTTP client (read-only)
+src/providers/navigator-client.mjs    # thin GraphQL client over built-in fetch (read-only)
 ```
 
-`geocoding.py` resolves place names to coordinates for "near me" search.
-`filters.py` maps plain words ("memory care", "private room") to API filters.
+`src/format.mjs` does plain-language, screen-reader-friendly output.
+`src/geocoding.mjs` resolves place names to coordinates (Nominatim, keyless).
+`src/filters.mjs` maps plain words ("memory care", "private room") to API filters.
+`src/config.mjs` reads `ALA_*` env vars. `src/errors.mjs` holds the typed errors.
+
+The `.mcpb` is built by `scripts/build.mjs` (esbuild bundles `src/index.mjs` +
+the SDK into a single `dist/server/index.mjs` with no native deps), then
+`mcpb pack dist`.
 
 ## How to work
 
@@ -55,17 +60,21 @@ NavigatorClient (client.py)    # thin GraphQL HTTP client (read-only)
   no emoji.
 - **Honesty.** Vacancy is a snapshot; say so. If the API and the spec disagree,
   reality wins — flag it in the findings doc (see the `hasPotentialVacancy`
-  note). Fail visibly; never guess a location or a fact.
+  note: it does not filter, so vacancy is filtered client-side on real counts).
+  Fail visibly; never guess a location or a fact.
 - **Identify honestly.** The API is public and accepts an honest `User-Agent`;
   do not impersonate a browser or spoof `Origin`.
-- Prefer small, typed, tested functions. Keep the provider interface clean.
+- Prefer small, focused functions. Keep the provider/client boundary clean.
 
-## Tests
+## Build, run, test
 
 ```bash
-uv sync
-uv run pytest
+npm install
+npm start            # node src/index.mjs (stdio)
+npm test             # node --test (offline; 47 tests against recorded fixtures)
+npm run build        # esbuild -> dist/server/index.mjs
+npx @anthropic-ai/mcpb pack dist alberta-assisted-living.mcpb
 ```
 
-Tests run fully offline against responses recorded from the live API. No live
-network calls in tests.
+No live network calls in tests — they run against fixtures recorded from the live
+API in `test/fixtures/`.

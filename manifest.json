@@ -1,5 +1,5 @@
 {
-  "manifest_version": "0.4",
+  "manifest_version": "0.3",
   "name": "alberta-assisted-living",
   "display_name": "Alberta Assisted Living (Open State)",
   "version": "0.1.0",
@@ -22,18 +22,11 @@
     "open-state"
   ],
   "server": {
-    "type": "uv",
-    "entry_point": "src/alberta_assisted_living/server.py",
+    "type": "node",
+    "entry_point": "server/index.mjs",
     "mcp_config": {
-      "command": "uv",
-      "args": [
-        "run",
-        "--directory",
-        "${__dirname}",
-        "python",
-        "-m",
-        "alberta_assisted_living.server"
-      ],
+      "command": "node",
+      "args": ["${__dirname}/server/index.mjs"],
       "env": {}
     }
   },
@@ -59,7 +52,7 @@
   "compatibility": {
     "platforms": ["darwin", "win32", "linux"],
     "runtimes": {
-      "python": ">=3.11"
+      "node": ">=18.0.0"
     }
   }
 }
