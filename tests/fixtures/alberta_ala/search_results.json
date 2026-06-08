@@ -1,0 +1,37 @@
+{
+  "data": {
+    "findAllBySearchTerm": [
+      {
+        "id": 70039781,
+        "name": "Villa Marguerite",
+        "city": "Edmonton",
+        "latitude": 53.53646,
+        "longitude": -113.60832,
+        "addressLine1": "9810 165 Street",
+        "addressLine2": "",
+        "country": "Canada",
+        "phoneNumber": "780-451-1114",
+        "postalCode": "T5P 3S7",
+        "province": "AB",
+        "typeAFundedBedCount": 0,
+        "typeBFundedBedCount": 145,
+        "typeBSecureFundedBedCount": 94,
+        "typeCFundedBedCount": 0,
+        "typeAVacantBedCount": 0,
+        "typeBVacantBedCount": 3,
+        "typeBSecureVacantBedCount": 0,
+        "typeCVacantBedCount": 0,
+        "supportedLivingBedCount": 0,
+        "seniorLodgeBedCount": 0,
+        "distanceKm": null,
+        "fundingTypeId": 1,
+        "titleImage": {
+          "imageUrl": "https://alamedia.alberta.ca/facility/Villa%20Marguerite%20-%2070039781/01_Villa%20Marguerite_Front%20Entrance.jpg",
+          "altText": "Villa Marguerite Front Entrance",
+          "__typename": "ImageEntity"
+        },
+        "__typename": "FacilityMapItemDto"
+      }
+    ]
+  }
+}

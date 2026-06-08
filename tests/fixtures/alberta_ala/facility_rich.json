@@ -1,0 +1,804 @@
+{
+  "data": {
+    "facility": {
+      "id": 70039781,
+      "name": "Villa Marguerite",
+      "addressLine1": "9810 165 Street",
+      "addressLine2": null,
+      "operator_type": "Private",
+      "amenityTypes": [
+        {
+          "id": 1,
+          "title": "Accessible (wheelchairs, scooters)",
+          "__typename": "AmentityTypeEntity"
+        },
+        {
+          "id": 3,
+          "title": "Common area(s) to socialize",
+          "__typename": "AmentityTypeEntity"
+        },
+        {
+          "id": 4,
+          "title": "Activity space(s)",
+          "__typename": "AmentityTypeEntity"
+        },
+        {
+          "id": 5,
+          "title": "Gardens",
+          "__typename": "AmentityTypeEntity"
+        },
+        {
+          "id": 8,
+          "title": "Spiritual care/ceremony space",
+          "__typename": "AmentityTypeEntity"
+        },
+        {
+          "id": 9,
+          "title": "Hairdresser/barber services",
+          "__typename": "AmentityTypeEntity"
+        },
+        {
+          "id": 10,
+          "title": "Private meeting room(s) (possible fee)",
+          "__typename": "AmentityTypeEntity"
+        },
+        {
+          "id": 12,
+          "title": "Safe independent outdoor smoking area",
+          "__typename": "AmentityTypeEntity"
+        },
+        {
+          "id": 13,
+          "title": "Tuck shop/mini convenience store",
+          "__typename": "AmentityTypeEntity"
+        }
+      ],
+      "ahsFundedSiteTypes": [
+        {
+          "id": 2,
+          "title": "Type B (Secure Space)",
+          "__typename": "AhsFundedSiteTypeEntity"
+        },
+        {
+          "id": 1,
+          "title": "Type B",
+          "__typename": "AhsFundedSiteTypeEntity"
+        }
+      ],
+      "buildDate": 1965,
+      "city": "Edmonton",
+      "corridor": "Edmonton",
+      "country": "Canada",
+      "createdAt": "2025-07-17T00:58:41.152Z",
+      "createdBy": "SYSTEM",
+      "createdByName": "SYSTEM",
+      "description": null,
+      "accreditationStatus": {
+        "id": 1,
+        "title": "Accredited",
+        "__typename": "AccreditationStatus"
+      },
+      "accomodationsStandardsUrl": "https://standardsandlicensing.alberta.ca/search-results.html?VALUE=Villa%20Marguerite&FACILITY_TYPE=_FOC_NULL&DISTANCE=_FOC_NULL&POSTAL_CODE=_FOC_NULL",
+      "accreditationOrganizationName": "Accreditation Canada",
+      "accreditationOrganizationUrl": "https://accreditation.ca/",
+      "facilityCharges": [
+        {
+          "id": 1321,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "Monthly",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 1,
+            "title": "Television",
+            "description": "Television service.",
+            "active": true,
+            "code": "TV",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 3922,
+          "amount": 70,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "Monthly",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 4,
+            "title": "Laundry",
+            "description": "Laundry service.",
+            "active": true,
+            "code": "LAUNDRY",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 4789,
+          "amount": 35,
+          "amountDescription": null,
+          "isMandatory": true,
+          "frequency": "One Time",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 5,
+            "title": "Clothing identification",
+            "description": "Clothing identification service.",
+            "active": true,
+            "code": "CLOTHING",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 8020,
+          "amount": 1200,
+          "amountDescription": null,
+          "isMandatory": null,
+          "frequency": null,
+          "refundAmount": null,
+          "refundType": "Partially Refundable",
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 9,
+            "title": "Security deposit",
+            "description": "Security deposit.",
+            "active": true,
+            "code": "DAMAGE_DEPOSIT",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 15322,
+          "amount": 25,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "Per Use",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 1136,
+            "title": "Laundering queen quilt",
+            "description": "Laundering queen quilt",
+            "active": true,
+            "code": "Laundering queen quilt",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 15323,
+          "amount": 50,
+          "amountDescription": null,
+          "isMandatory": true,
+          "frequency": "One Time",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 1168,
+            "title": "Move out clean/sanitaiton",
+            "description": "Move out clean/sanitaiton",
+            "active": true,
+            "code": "Move out clean/sanitaiton",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 15324,
+          "amount": 250,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "One Time",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 1204,
+            "title": "Personal pendant call (free in room call bell)",
+            "description": "Personal pendant call (free in room call bell)",
+            "active": true,
+            "code": "Personal pendant call (free in room call bell)",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 15325,
+          "amount": 10,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "One Time",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 1228,
+            "title": "Replacement or Additional Prox Card",
+            "description": "Replacement or Additional Prox Card",
+            "active": true,
+            "code": "Replacement or Additional Prox Card",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 15326,
+          "amount": 15,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "Monthly",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 1293,
+            "title": "Use of Laundry Machines",
+            "description": "Use of Laundry Machines",
+            "active": true,
+            "code": "Use of Laundry Machines",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 15327,
+          "amount": 45,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "Per Use",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 1178,
+            "title": "NSF Fee",
+            "description": "NSF Fee",
+            "active": true,
+            "code": "NSF Fee",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 2188,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 2,
+            "title": "Internet",
+            "description": "Internet service.",
+            "active": true,
+            "code": "INTERNET",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 3055,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 3,
+            "title": "Phone",
+            "description": "Phone service.",
+            "active": true,
+            "code": "PHONE",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 5656,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 6,
+            "title": "Toiletries",
+            "description": "Toiletries service.",
+            "active": true,
+            "code": "TOILETRIES",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 6523,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 7,
+            "title": "Parking",
+            "description": "Parking.",
+            "active": true,
+            "code": "PARKING",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 7390,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 8,
+            "title": "Non-medical transportation",
+            "description": "Non-medical transportation service.",
+            "active": true,
+            "code": "NON_MED_TRANSPORT",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 8358,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 2,
+            "title": "Accessed Through Site Directly",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 5,
+            "title": "Clothing identification",
+            "description": "Clothing identification service.",
+            "active": true,
+            "code": "CLOTHING",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 9324,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 2,
+            "title": "Accessed Through Site Directly",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 2,
+            "title": "Internet",
+            "description": "Internet service.",
+            "active": true,
+            "code": "INTERNET",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 10183,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 2,
+            "title": "Accessed Through Site Directly",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 4,
+            "title": "Laundry",
+            "description": "Laundry service.",
+            "active": true,
+            "code": "LAUNDRY",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 11042,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 2,
+            "title": "Accessed Through Site Directly",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 8,
+            "title": "Non-medical transportation",
+            "description": "Non-medical transportation service.",
+            "active": true,
+            "code": "NON_MED_TRANSPORT",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 11901,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 2,
+            "title": "Accessed Through Site Directly",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 7,
+            "title": "Parking",
+            "description": "Parking.",
+            "active": true,
+            "code": "PARKING",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 12760,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 2,
+            "title": "Accessed Through Site Directly",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 3,
+            "title": "Phone",
+            "description": "Phone service.",
+            "active": true,
+            "code": "PHONE",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 13619,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 2,
+            "title": "Accessed Through Site Directly",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 6,
+            "title": "Toiletries",
+            "description": "Toiletries service.",
+            "active": true,
+            "code": "TOILETRIES",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 14478,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 2,
+            "title": "Accessed Through Site Directly",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 1,
+            "title": "Television",
+            "description": "Television service.",
+            "active": true,
+            "code": "TV",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        }
+      ],
+      "faxNumber": null,
+      "foodServiceTypes": [
+        {
+          "id": 1,
+          "title": "Meals included",
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "__typename": "FoodServiceEntity"
+        },
+        {
+          "id": 2,
+          "title": "Guest meals (for purchase)",
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "__typename": "FoodServiceEntity"
+        }
+      ],
+      "fundingType": {
+        "id": 1,
+        "title": "Accessed Through AHS Case Manager",
+        "__typename": "FundingTypeEntity"
+      },
+      "hasSmokingPolicy": true,
+      "images": [
+        {
+          "imageUrl": "https://alamedia.alberta.ca/facility/Villa%20Marguerite%20-%2070039781/01_Villa%20Marguerite_Front%20Entrance.jpg",
+          "altText": "Villa Marguerite Front Entrance",
+          "__typename": "ImageEntity"
+        },
+        {
+          "imageUrl": "https://alamedia.alberta.ca/facility/Villa%20Marguerite%20-%2070039781/02_Villa%20Marguerite_Exterior.jpg",
+          "altText": "Villa Marguerite Exterior",
+          "__typename": "ImageEntity"
+        },
+        {
+          "imageUrl": "https://alamedia.alberta.ca/facility/Villa%20Marguerite%20-%2070039781/03_Villa%20Marguerite_Common%20Area.jpg",
+          "altText": "Villa Marguerite Common Area",
+          "__typename": "ImageEntity"
+        },
+        {
+          "imageUrl": "https://alamedia.alberta.ca/facility/Villa%20Marguerite%20-%2070039781/04_Villa%20Marguerite_Common%20Area.jpg",
+          "altText": "Villa Marguerite Common Area",
+          "__typename": "ImageEntity"
+        },
+        {
+          "imageUrl": "https://alamedia.alberta.ca/facility/Villa%20Marguerite%20-%2070039781/05_Villa%20Marguerite_Common%20Area.jpg",
+          "altText": "Villa Marguerite Common Area",
+          "__typename": "ImageEntity"
+        },
+        {
+          "imageUrl": "https://alamedia.alberta.ca/facility/Villa%20Marguerite%20-%2070039781/06_Villa%20Marguerite_Common%20Area.jpg",
+          "altText": "Villa Marguerite Common Area",
+          "__typename": "ImageEntity"
+        },
+        {
+          "imageUrl": "https://alamedia.alberta.ca/facility/Villa%20Marguerite%20-%2070039781/07_Villa%20Marguerite_Common%20Area.jpg",
+          "altText": "Villa Marguerite Common Area",
+          "__typename": "ImageEntity"
+        },
+        {
+          "imageUrl": "https://alamedia.alberta.ca/facility/Villa%20Marguerite%20-%2070039781/08_Villa%20Marguerite_Activity%20Space.jpg",
+          "altText": "Villa Marguerite Activity Space",
+          "__typename": "ImageEntity"
+        },
+        {
+          "imageUrl": "https://alamedia.alberta.ca/facility/Villa%20Marguerite%20-%2070039781/09_Villa%20Marguerite_Activity%20Space.jpg",
+          "altText": "Villa Marguerite Activity Space",
+          "__typename": "ImageEntity"
+        }
+      ],
+      "latitude": 53.53646,
+      "longitude": -113.60832,
+      "nonAhsFundedSiteTypes": null,
+      "numberOfSpacesAccessibleB": null,
+      "numberOfSpacesMultiBedroom": null,
+      "numberOfSpacesOneBedroom": 11,
+      "numberOfSpacesPrivateRoom": 228,
+      "numberOfSpacesSharedRoom": null,
+      "operatorWebsite": "https://www.parkplaceseniorsliving.com/find-a-location/alberta/edmonton/villa-marguerite/",
+      "operator_name": "Villa Marguerite Seniors Community Partnership",
+      "organizationId": 0,
+      "otherServicesThroughAHSCaseManager": "Podiatrist; Disabled Adult Transportation (DAT) available; Located close to Misericordia Hospital; Located close to West Edmonton Mall",
+      "otherServicesThroughSiteDirectly": null,
+      "otherServicesThroughZonePalliativeAndEndOfLifeCareTeams": null,
+      "phoneNumber": "780-451-1114",
+      "postalCode": "T5P 3S7",
+      "province": "AB",
+      "roomPricings": null,
+      "roomTypes": [
+        {
+          "id": 1,
+          "title": "Private room",
+          "__typename": "RoomTypeEntity"
+        },
+        {
+          "id": 2,
+          "title": "1 bedroom suite",
+          "__typename": "RoomTypeEntity"
+        },
+        {
+          "id": 4,
+          "title": "Accessible bathroom",
+          "__typename": "RoomTypeEntity"
+        }
+      ],
+      "securityServiceTypes": [
+        {
+          "id": 1,
+          "title": "Emergency call system",
+          "__typename": "SecurityServiceTypeEntity"
+        }
+      ],
+      "seniorLodgeBedCount": 0,
+      "seniorLodgeDesignation": null,
+      "serviceTypes": [
+        {
+          "id": 1,
+          "title": "Housekeeping",
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "__typename": "SiteServiceTypeEntity"
+        },
+        {
+          "id": 2,
+          "title": "Laundry services",
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "__typename": "SiteServiceTypeEntity"
+        },
+        {
+          "id": 3,
+          "title": "Social/recreational activities",
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "__typename": "SiteServiceTypeEntity"
+        }
+      ],
+      "siteEmail": null,
+      "status": "Active",
+      "supportedLivingBedCount": 0,
+      "titleImage": {
+        "imageUrl": "https://alamedia.alberta.ca/facility/Villa%20Marguerite%20-%2070039781/01_Villa%20Marguerite_Front%20Entrance.jpg",
+        "altText": "Villa Marguerite Front Entrance",
+        "__typename": "ImageEntity"
+      },
+      "transportationServiceTypes": [
+        {
+          "id": 1,
+          "title": "Public transit access",
+          "__typename": "TransportationServiceTypeEntity"
+        },
+        {
+          "id": 2,
+          "title": "Parking",
+          "__typename": "TransportationServiceTypeEntity"
+        }
+      ],
+      "typeAFundedBedCount": 0,
+      "typeBFundedBedCount": 145,
+      "typeBSecureFundedBedCount": 94,
+      "typeCFundedBedCount": 0,
+      "typeAVacantBedCount": 0,
+      "typeBVacantBedCount": 3,
+      "typeBSecureVacantBedCount": 0,
+      "typeCVacantBedCount": 0,
+      "updatedAt": "2026-06-02T20:20:01.450Z",
+      "updatedBy": "SYSTEM",
+      "updatedByName": "sharepoint",
+      "vacancyType": null,
+      "virtualTourWebsite": null,
+      "zoneId": 4,
+      "__typename": "FacilityEntity"
+    }
+  }
+}

@@ -1,0 +1,453 @@
+{
+  "data": {
+    "facility": {
+      "id": 70042229,
+      "name": "Canora Place Supportive Living",
+      "addressLine1": "10141 153 Street",
+      "addressLine2": null,
+      "operator_type": null,
+      "amenityTypes": null,
+      "ahsFundedSiteTypes": null,
+      "buildDate": null,
+      "city": "Edmonton",
+      "corridor": null,
+      "country": "Canada",
+      "createdAt": "2026-06-03T16:29:22.416Z",
+      "createdBy": "SYSTEM",
+      "createdByName": "sharepoint",
+      "description": "sharepoint",
+      "accreditationStatus": null,
+      "accomodationsStandardsUrl": "https://standardsandlicensing.alberta.ca/detail_page.html?ID=5029",
+      "accreditationOrganizationName": null,
+      "accreditationOrganizationUrl": null,
+      "facilityCharges": [
+        {
+          "id": 1773,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 1,
+            "title": "Television",
+            "description": "Television service.",
+            "active": true,
+            "code": "TV",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 2640,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 2,
+            "title": "Internet",
+            "description": "Internet service.",
+            "active": true,
+            "code": "INTERNET",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 3507,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 3,
+            "title": "Phone",
+            "description": "Phone service.",
+            "active": true,
+            "code": "PHONE",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 4374,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 4,
+            "title": "Laundry",
+            "description": "Laundry service.",
+            "active": true,
+            "code": "LAUNDRY",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 5241,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 5,
+            "title": "Clothing identification",
+            "description": "Clothing identification service.",
+            "active": true,
+            "code": "CLOTHING",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 6108,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 6,
+            "title": "Toiletries",
+            "description": "Toiletries service.",
+            "active": true,
+            "code": "TOILETRIES",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 6975,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 7,
+            "title": "Parking",
+            "description": "Parking.",
+            "active": true,
+            "code": "PARKING",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 7842,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 1,
+            "title": "Accessed Through AHS Case Manager",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 8,
+            "title": "Non-medical transportation",
+            "description": "Non-medical transportation service.",
+            "active": true,
+            "code": "NON_MED_TRANSPORT",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 8810,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 2,
+            "title": "Accessed Through Site Directly",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 5,
+            "title": "Clothing identification",
+            "description": "Clothing identification service.",
+            "active": true,
+            "code": "CLOTHING",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 9776,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 2,
+            "title": "Accessed Through Site Directly",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 2,
+            "title": "Internet",
+            "description": "Internet service.",
+            "active": true,
+            "code": "INTERNET",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 10635,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 2,
+            "title": "Accessed Through Site Directly",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 4,
+            "title": "Laundry",
+            "description": "Laundry service.",
+            "active": true,
+            "code": "LAUNDRY",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 11494,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 2,
+            "title": "Accessed Through Site Directly",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 8,
+            "title": "Non-medical transportation",
+            "description": "Non-medical transportation service.",
+            "active": true,
+            "code": "NON_MED_TRANSPORT",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 12353,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 2,
+            "title": "Accessed Through Site Directly",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 7,
+            "title": "Parking",
+            "description": "Parking.",
+            "active": true,
+            "code": "PARKING",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 13212,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 2,
+            "title": "Accessed Through Site Directly",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 3,
+            "title": "Phone",
+            "description": "Phone service.",
+            "active": true,
+            "code": "PHONE",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 14071,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 2,
+            "title": "Accessed Through Site Directly",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 6,
+            "title": "Toiletries",
+            "description": "Toiletries service.",
+            "active": true,
+            "code": "TOILETRIES",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        },
+        {
+          "id": 14930,
+          "amount": 0,
+          "amountDescription": null,
+          "isMandatory": false,
+          "frequency": "",
+          "refundAmount": null,
+          "refundType": null,
+          "fundingType": {
+            "id": 2,
+            "title": "Accessed Through Site Directly",
+            "__typename": "FundingTypeEntity"
+          },
+          "chargeType": {
+            "id": 1,
+            "title": "Television",
+            "description": "Television service.",
+            "active": true,
+            "code": "TV",
+            "__typename": "ChargeTypeEntity"
+          },
+          "__typename": "ChargeEntity"
+        }
+      ],
+      "faxNumber": null,
+      "foodServiceTypes": null,
+      "fundingType": {
+        "id": 2,
+        "title": "Accessed Through Site Directly",
+        "__typename": "FundingTypeEntity"
+      },
+      "hasSmokingPolicy": null,
+      "images": [],
+      "latitude": 53.5427,
+      "longitude": -113.58716,
+      "nonAhsFundedSiteTypes": [
+        {
+          "id": 1,
+          "title": "Supportive Living",
+          "__typename": "NonAhsFundedSiteTypeEntity"
+        }
+      ],
+      "numberOfSpacesAccessibleB": null,
+      "numberOfSpacesMultiBedroom": null,
+      "numberOfSpacesOneBedroom": null,
+      "numberOfSpacesPrivateRoom": null,
+      "numberOfSpacesSharedRoom": null,
+      "operatorWebsite": null,
+      "operator_name": "George Spady Centre Society (The)",
+      "organizationId": 0,
+      "otherServicesThroughAHSCaseManager": null,
+      "otherServicesThroughSiteDirectly": null,
+      "otherServicesThroughZonePalliativeAndEndOfLifeCareTeams": null,
+      "phoneNumber": "780-424-8335",
+      "postalCode": "T5P 2V4",
+      "province": "AB",
+      "roomPricings": null,
+      "roomTypes": null,
+      "securityServiceTypes": null,
+      "seniorLodgeBedCount": 0,
+      "seniorLodgeDesignation": null,
+      "serviceTypes": null,
+      "siteEmail": null,
+      "status": "Active",
+      "supportedLivingBedCount": 28,
+      "titleImage": null,
+      "transportationServiceTypes": null,
+      "typeAFundedBedCount": 0,
+      "typeBFundedBedCount": 0,
+      "typeBSecureFundedBedCount": 0,
+      "typeCFundedBedCount": 0,
+      "typeAVacantBedCount": 0,
+      "typeBVacantBedCount": 0,
+      "typeBSecureVacantBedCount": 0,
+      "typeCVacantBedCount": 0,
+      "updatedAt": "2026-06-03T16:29:22.416Z",
+      "updatedBy": "SYSTEM",
+      "updatedByName": "sharepoint",
+      "vacancyType": null,
+      "virtualTourWebsite": null,
+      "zoneId": 1,
+      "__typename": "FacilityEntity"
+    }
+  }
+}
