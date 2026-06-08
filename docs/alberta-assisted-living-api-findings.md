@@ -3,7 +3,7 @@
 What the public Navigator API actually does, recorded from real traffic and live
 probing rather than assumed (The Open State AGENTS.md: *"When the spec and
 reality disagree, reality wins. Flag the discrepancy."*). This is the contract
-`providers/alberta_ala/` is built against.
+`src/providers/` (the Node GraphQL client and provider) is built against.
 
 ## Source
 
@@ -78,7 +78,8 @@ unfiltered): `amenityFilter.accessibleBuilding=[true]` → 224;
 - `radiusKm` filters to a circle inside the box; each result carries
   `distanceKm` measured **from the box centre**. So to search "within R km of a
   point", centre a box of half-size R on the point and pass `radiusKm = R`
-  (implemented in `provider._bounding_box`). Verified: a 5 km box returns
+  (implemented in `boundingBox()` in `src/providers/navigator-provider.mjs`).
+  Verified: a 5 km box returns
   distances 0.6–5.0 km; a 25 km box, 0.6–24.8 km.
 - Results are **not** guaranteed to be distance-sorted; we sort client-side.
 
@@ -141,6 +142,6 @@ Hosted on `alamedia.alberta.ca`. The client only fetches photos from that host
 
 ## Politeness
 
-Interactive, low-volume use. Honest `User-Agent`, certificate verification
-always on (`tls.py`), a global rate limit available for any HTTP deployment, and
-no calls to operator/write endpoints (Constitution Art. 7.3).
+Interactive, low-volume use over stdio. Honest `User-Agent`, TLS certificate
+verification always on (Node defaults, with `NODE_EXTRA_CA_CERTS` honoured for
+proxy CAs), and no calls to operator/write endpoints (Constitution Art. 7.3).
