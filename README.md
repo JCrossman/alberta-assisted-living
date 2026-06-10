@@ -38,6 +38,9 @@ The binding rules and design are in The Open State repo:
 The verified API contract this server is built on is in
 [`docs/alberta-assisted-living-api-findings.md`](docs/alberta-assisted-living-api-findings.md),
 and the article-by-article compliance mapping is in [`COMPLIANCE.md`](COMPLIANCE.md).
+That compliance is pinned to a specific version of the constitution and kept
+honest by an automated drift check — see
+[Staying in sync with the Constitution](#staying-in-sync-with-the-constitution).
 
 ## What it does
 
@@ -189,6 +192,25 @@ Reality, recorded rather than guessed (Constitution Art. 7):
 - **This tool never acts.** It finds and explains. Applying for a publicly funded
   space happens through an Alberta Health Services case manager; arranging a
   private space happens with the operator. You take those steps yourself.
+
+## Staying in sync with the Constitution
+
+The Civic Access Protocol [`CONSTITUTION.md`](https://github.com/JCrossman/the-open-state/blob/main/CONSTITUTION.md)
+lives in the separate `the-open-state` repo and may be revised over time (its own
+terms require revisions to *strengthen, not weaken* the protections). So
+[`COMPLIANCE.md`](COMPLIANCE.md) is a claim about a **specific version**, pinned
+in [`constitution.lock`](constitution.lock) by the constitution's git blob SHA.
+
+A scheduled GitHub Action
+([`.github/workflows/constitution-sync.yml`](.github/workflows/constitution-sync.yml))
+re-checks the upstream constitution weekly and **opens an issue** if it has
+changed since the pin, prompting a re-review of `COMPLIANCE.md` and a re-pin. It
+is silent while in sync. Run it locally with `npm run check:constitution`.
+
+Because `the-open-state` is **private**, the check needs read access: add a
+fine-grained PAT with **Contents: Read** on `JCrossman/the-open-state` as the
+`CONSTITUTION_REPO_TOKEN` Actions secret. Full details and the re-pin steps are
+in [`COMPLIANCE.md`](COMPLIANCE.md#staying-in-sync-with-the-constitution).
 
 ## What this is not
 

@@ -5,6 +5,12 @@ How this implementation meets every binding commitment in The Open State
 An implementation is Civic Access Protocol compliant only if it satisfies every
 **MUST** / **MUST NOT** in Articles 1–10.
 
+> **Verified against** `the-open-state` `CONSTITUTION.md` @ commit `fe6b163`
+> (git blob `49f882b`), on **2026-06-10**, Articles 1–10. The pin lives in
+> [`constitution.lock`](constitution.lock), and a scheduled GitHub Action
+> re-checks the upstream constitution and opens an issue if it changes — see
+> [Staying in sync](#staying-in-sync-with-the-constitution) below.
+
 This service reads a **public, unauthenticated** government dataset and is
 **read-only**, which makes most credential and consequential-action risks
 structurally absent rather than merely mitigated.
@@ -29,3 +35,44 @@ guarantees come from the design itself: **no credentials**, **read-only**, and
 **stateless**. The areas needing active care — accessibility-first presentation
 (Art. 3), honesty about vacancy and limits (Art. 7), and honest identification
 (Art. 10) — are addressed in code and documented here and in `docs/`.
+
+## Staying in sync with the Constitution
+
+The constitution lives in a separate repo (`the-open-state`) and may be revised
+over time — its own terms require that revisions *"strengthen, not weaken"* the
+protections. This mapping is therefore a claim about a **specific version** of
+the constitution, recorded in [`constitution.lock`](constitution.lock): the
+source repo, path, branch, the git **blob SHA**, a `sha256`, the upstream commit,
+and the date it was last reviewed.
+
+Drift is detected automatically. The
+[`constitution-sync`](.github/workflows/constitution-sync.yml) GitHub Action runs
+weekly (and on demand) via [`scripts/check-constitution.mjs`](scripts/check-constitution.mjs):
+it reads the current upstream `CONSTITUTION.md` blob SHA and compares it to the
+pin. If they differ it **opens an issue** asking a human to re-review this file
+against the new text and then update the pin. It is silent while in sync.
+
+Run the same check locally:
+
+```bash
+npm run check:constitution      # needs CONSTITUTION_REPO_TOKEN (see below)
+```
+
+**`the-open-state` is a private repo**, so the check needs read access to it:
+
+- Create a **fine-grained personal access token** scoped to
+  `JCrossman/the-open-state` with **Contents: Read** (read-only, that one repo).
+- Add it to this repository's **Actions secrets** as `CONSTITUTION_REPO_TOKEN`.
+
+Until that secret exists, the workflow reports *"not configured"* with these
+instructions rather than passing silently. If `the-open-state` is ever made
+public, no token is needed.
+
+### When the drift issue opens
+
+1. Read the new `CONSTITUTION.md` and diff it against the version this was
+   verified against.
+2. Confirm every tool and behaviour still satisfies the (possibly strengthened)
+   MUST / MUST NOT, and update the table above where wording changed.
+3. Update `blob_sha`, `sha256`, `commit_at_verification`, and `verified_date` in
+   `constitution.lock`, and close the issue.

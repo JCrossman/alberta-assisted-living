@@ -64,6 +64,12 @@ the SDK into a single `dist/server/index.mjs` with no native deps), then
   Fail visibly; never guess a location or a fact.
 - **Identify honestly.** The API is public and accepts an honest `User-Agent`;
   do not impersonate a browser or spoof `Origin`.
+- **Stay pinned to the Constitution.** Compliance is pinned in
+  `constitution.lock` and checked by the `constitution-sync` workflow. If a
+  "constitution drift" issue opens, re-review `COMPLIANCE.md` against the new
+  upstream text, then update the pin (`blob_sha`, `sha256`,
+  `commit_at_verification`, `verified_date`). Do not just bump the pin without
+  re-reviewing.
 - Prefer small, focused functions. Keep the provider/client boundary clean.
 
 ## Build, run, test

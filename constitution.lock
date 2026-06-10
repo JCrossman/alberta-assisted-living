@@ -1,0 +1,16 @@
+{
+  "_comment": "Pins the Civic Access Protocol constitution this implementation was last verified against. The drift-check workflow (.github/workflows/constitution-sync.yml) compares the upstream file's git blob SHA to `blob_sha` below and opens an issue if they differ. When that happens: re-review COMPLIANCE.md against the new text (revisions 'must strengthen, not weaken'), then update blob_sha, sha256, commit_at_verification, and verified_date here.",
+  "source": {
+    "repo": "JCrossman/the-open-state",
+    "path": "CONSTITUTION.md",
+    "ref": "main",
+    "url": "https://github.com/JCrossman/the-open-state/blob/main/CONSTITUTION.md",
+    "private": true
+  },
+  "blob_sha": "49f882b979db9f948f3ad5e0e29eb631d3948661",
+  "sha256": "25e6be9c1e3b723e792df60c12e06f8c0e1f230930cbac28c6944bf2ba9ecf1c",
+  "commit_at_verification": "fe6b163556aade8f5dc867ff679057481633fab1",
+  "articles_reviewed": "1-10",
+  "verified_date": "2026-06-10",
+  "compliance_doc": "COMPLIANCE.md"
+}
