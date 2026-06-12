@@ -12,13 +12,14 @@
  *   0  sync   - upstream matches the pin; nothing to do.
  *   1  drift  - upstream changed; re-review COMPLIANCE.md and re-pin. Writes an
  *               issue body to constitution-drift.md.
- *   2  error  - could not read upstream (usually a missing/insufficient token,
- *               because the-open-state is private).
+ *   2  error  - could not read upstream (network or GitHub API rate limit, or
+ *               the path/branch moved).
  *
- * Reading a private repo needs a token: set `CONSTITUTION_REPO_TOKEN` (a
- * fine-grained PAT with Contents: Read on the source repo). For local/offline
- * runs, set `CONSTITUTION_SOURCE_FILE` to a local copy of CONSTITUTION.md and the
- * git blob SHA is computed locally instead of fetched.
+ * The source repo is public, so no token is required. A token is optional and
+ * only raises the GitHub API rate limit: set `CONSTITUTION_REPO_TOKEN` or
+ * `GH_TOKEN` (the workflow passes the built-in GITHUB_TOKEN as GH_TOKEN). For
+ * local/offline runs, set `CONSTITUTION_SOURCE_FILE` to a local copy of
+ * CONSTITUTION.md and the git blob SHA is computed locally instead of fetched.
  */
 
 import { readFileSync, appendFileSync, writeFileSync } from "node:fs";
@@ -58,15 +59,15 @@ async function currentBlobSha() {
   if (token) headers.Authorization = `Bearer ${token}`;
 
   const resp = await fetch(api, { headers });
-  if ([401, 403, 404].includes(resp.status)) {
+  if ([401, 403, 404, 429].includes(resp.status)) {
     const msg =
-      `Could not read ${repo}/${path}@${ref} (HTTP ${resp.status}). ` +
-      `${repo} is private, so this check needs a read token. Add a fine-grained ` +
-      `PAT with "Contents: Read" on ${repo} as the repository secret ` +
-      `CONSTITUTION_REPO_TOKEN. See README "Staying in sync with the Constitution".`;
-    const err = new Error(msg);
-    err.kind = "config";
-    throw err;
+      `Could not read ${repo}/${path}@${ref} (HTTP ${resp.status}). ${repo} is ` +
+      `public, so this is most likely a GitHub API rate limit (a 404 can also mean ` +
+      `the path or branch moved). No token is required, but one raises the rate ` +
+      `limit: the workflow passes the built-in GITHUB_TOKEN; for local runs set ` +
+      `GH_TOKEN or CONSTITUTION_REPO_TOKEN, or set CONSTITUTION_SOURCE_FILE to a ` +
+      `local copy. See README "Staying in sync with the Constitution".`;
+    throw new Error(msg);
   }
   if (!resp.ok) throw new Error(`Unexpected HTTP ${resp.status} from the GitHub API.`);
   const body = await resp.json();
@@ -113,9 +114,7 @@ try {
   process.exit(1);
 } catch (err) {
   console.error("Constitution check could not run:", err.message);
-  stepSummary(
-    `## Constitution sync ${err.kind === "config" ? "not configured" : "error"}\n\n${err.message}`
-  );
+  stepSummary(`## Constitution sync error\n\n${err.message}`);
   setOutput("status", "error");
   process.exit(2);
 }

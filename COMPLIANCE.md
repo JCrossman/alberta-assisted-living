@@ -5,11 +5,17 @@ How this implementation meets every binding commitment in The Open State
 An implementation is Civic Access Protocol compliant only if it satisfies every
 **MUST** / **MUST NOT** in Articles 1–10.
 
-> **Verified against** `the-open-state` `CONSTITUTION.md` @ commit `fe6b163`
-> (git blob `49f882b`), on **2026-06-10**, Articles 1–10. The pin lives in
-> [`constitution.lock`](constitution.lock), and a scheduled GitHub Action
-> re-checks the upstream constitution and opens an issue if it changes — see
-> [Staying in sync](#staying-in-sync-with-the-constitution) below.
+> **Verified against** `the-open-state` `CONSTITUTION.md` **v1.1** (tag
+> `constitution-v1.1`, commit `10d0f1a`, git blob `e63277e`), on **2026-06-12**,
+> Articles 1–10. v1.1 is **clarifications only** — Art. 1.2 now states the
+> forbidden login is one performed on the *implementer's* infrastructure, and
+> Art. 3.3 spells out that "filter" means restricting results to only the
+> accessible options; a v1.0-compliant implementation remains compliant. This
+> service performs no login (so 1.2 is moot) and its accessibility filters already
+> restrict the result set (so clarified 3.3 is met) — no code change was needed.
+> The pin lives in [`constitution.lock`](constitution.lock), and a scheduled
+> GitHub Action re-checks the upstream constitution and opens an issue if it
+> changes — see [Staying in sync](#staying-in-sync-with-the-constitution) below.
 
 This service reads a **public, unauthenticated** government dataset and is
 **read-only**, which makes most credential and consequential-action risks
@@ -55,18 +61,17 @@ against the new text and then update the pin. It is silent while in sync.
 Run the same check locally:
 
 ```bash
-npm run check:constitution      # needs CONSTITUTION_REPO_TOKEN (see below)
+npm run check:constitution
 ```
 
-**`the-open-state` is a private repo**, so the check needs read access to it:
+**`the-open-state` is a public repo**, so the check needs no credentials and no
+setup. The workflow passes the built-in `GITHUB_TOKEN` only for GitHub API
+rate-limit headroom; the check also runs unauthenticated. For a local run that
+avoids the API entirely, point it at a local copy:
 
-- Create a **fine-grained personal access token** scoped to
-  `JCrossman/the-open-state` with **Contents: Read** (read-only, that one repo).
-- Add it to this repository's **Actions secrets** as `CONSTITUTION_REPO_TOKEN`.
-
-Until that secret exists, the workflow reports *"not configured"* with these
-instructions rather than passing silently. If `the-open-state` is ever made
-public, no token is needed.
+```bash
+CONSTITUTION_SOURCE_FILE=/path/to/CONSTITUTION.md npm run check:constitution
+```
 
 ### When the drift issue opens
 

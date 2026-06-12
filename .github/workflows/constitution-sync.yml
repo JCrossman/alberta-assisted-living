@@ -5,10 +5,9 @@ name: Constitution sync
 # CONSTITUTION.md against the pin in constitution.lock and, if it has changed,
 # opens an issue asking a human to re-review COMPLIANCE.md and re-pin.
 #
-# Because the-open-state is a PRIVATE repo, this needs a read token: add a
-# fine-grained PAT with "Contents: Read" on JCrossman/the-open-state as the
-# repository secret CONSTITUTION_REPO_TOKEN. Until that secret exists the job
-# reports "not configured" (red) with instructions.
+# the-open-state is a PUBLIC repo, so no PAT or secret setup is required. The
+# job passes the built-in GITHUB_TOKEN (github.token) only for GitHub API
+# rate-limit headroom; the check also works unauthenticated.
 
 on:
   schedule:
@@ -38,7 +37,7 @@ jobs:
       - id: check
         continue-on-error: true
         env:
-          CONSTITUTION_REPO_TOKEN: ${{ secrets.CONSTITUTION_REPO_TOKEN }}
+          GH_TOKEN: ${{ github.token }}
         run: node scripts/check-constitution.mjs
 
       - name: Open or update drift issue

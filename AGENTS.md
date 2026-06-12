@@ -84,3 +84,57 @@ npx @anthropic-ai/mcpb pack dist alberta-assisted-living.mcpb
 
 No live network calls in tests — they run against fixtures recorded from the live
 API in `test/fixtures/`.
+
+## The Open State — binding conformance
+
+This project implements the **Civic Access Protocol** and conforms to
+[The Open State Constitution](https://github.com/JCrossman/the-open-state/blob/main/CONSTITUTION.md)
+at tag `constitution-v1.1`. These rules are binding: if a requested change
+conflicts with one, say so and stop rather than complying — cite the article.
+
+**Scope note — this server is read-only.** It performs no sign-in, stores no
+session, holds no credentials, and takes no consequential action (no booking,
+payment, submission, cancellation, or record change); every tool is a public-data
+read. So the Civic Access Protocol kit (`@open-state/kit` — `vault` / `capture` /
+`confirmGated`), which mechanically satisfies the credential, session, and
+consequential-action parts of Arts. 1, 2, 9, and 10, has nothing to wrap here:
+those articles are satisfied **by absence**, and the kit is therefore **not a
+dependency** of this package. (Pinning the kit would not by itself make this
+implementation "compliant" anyway — see The Open State `CONFORMANCE.md`: the kit
+covers four articles partially and does nothing for Arts. 3–8.)
+
+**Binding forward rule.** The moment this tool gains a citizen login, a stored
+session, or any consequential (write) action, that code MUST adopt
+`@open-state/kit` and route through it — sign-in via `capture`, session storage
+via the `vault`, every consequential action via the `confirmGated` two-phase gate
+— *before it ships*, and the kit MUST then be pinned in `package.json`. Adding
+such a path without the kit is a conformance violation: stop and flag it.
+
+The non-negotiables, binding now:
+
+- **The human decides (Art. 2).** Tools may fully *prepare* a consequential action
+  but MUST stop at the citizen's own final step (use the kit's `confirmGated`
+  shape when such an action exists). Never design to win a contested public
+  resource by automation. *(No such action exists today — this server only reads.)*
+- **No stored government credentials (Art. 1).** No passwords or secrets in code,
+  logs, tool output, or any server. Any future citizen session lives only in the
+  kit vault, on-device, encrypted; never expose a session to the model. *(This
+  server holds none — the Navigator read API needs no auth.)*
+- **Accessibility is the purpose (Art. 3).** Screen-reader-clean output (no tables,
+  no emoji), plain language, accessibility attributes first-class and filterable
+  (restrict results to only accessible options), and accessible *through to the
+  point of action* — never hand the citizen back to an inaccessible interface.
+- **Health/disability data is the most protected class (Art. 5.4).** Treat anything
+  revealing disability, health, or accessibility needs with heightened protection;
+  never store it and never use it beyond serving the request. This server is
+  stateless and stores nothing.
+- **Honesty (Art. 7).** Distinguish verified from assumed. Fail visibly in plain
+  language; never guess a location or a fact. Honest identification (no browser
+  impersonation, no `Origin` spoofing) and polite request rates; no degradation of
+  the upstream service.
+- **Assistive technology, not a bot (Art. 10).** Act only in the citizen's own
+  session, at their direction, through the service's **own data interface**. Never
+  impersonate anyone and never defeat a human gate — the citizen passes it
+  personally.
+
+No citizen should be excluded from what is already theirs.

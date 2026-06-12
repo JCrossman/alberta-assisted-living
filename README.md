@@ -22,6 +22,22 @@ Built in **Node.js** (matching the Camp MCP), using the official
 > built on Alberta's *public* Assisted Living Navigator data. It is **not
 > operated by or endorsed by the Government of Alberta.**
 
+## Conformance
+
+This is a Civic Access Protocol implementation and **conforms to The Open State
+Constitution** at tag
+[`constitution-v1.1`](https://github.com/JCrossman/the-open-state/blob/main/CONSTITUTION.md).
+It is **read-only** — no login, no stored session, no credentials, and no
+consequential action — so the protocol's credential, session, and
+consequential-action guarantees (Articles 1, 2, 9, 10) are met **by absence**, and
+the Civic Access Protocol kit
+([`@open-state/kit`](https://www.npmjs.com/package/@open-state/kit)) is **not a
+dependency**. If this tool ever gains a citizen login or a consequential action,
+it commits to adopting the kit for those (on-device vault, session capture, and a
+human-confirmation gate). The article-by-article mapping is in
+[`COMPLIANCE.md`](COMPLIANCE.md); the protocol's conformance requirements are in
+[`CONFORMANCE.md`](https://github.com/JCrossman/the-open-state/blob/main/CONFORMANCE.md).
+
 ## Why this exists
 
 The Assisted Living Navigator is genuinely useful, but finding the right place
@@ -207,10 +223,10 @@ re-checks the upstream constitution weekly and **opens an issue** if it has
 changed since the pin, prompting a re-review of `COMPLIANCE.md` and a re-pin. It
 is silent while in sync. Run it locally with `npm run check:constitution`.
 
-Because `the-open-state` is **private**, the check needs read access: add a
-fine-grained PAT with **Contents: Read** on `JCrossman/the-open-state` as the
-`CONSTITUTION_REPO_TOKEN` Actions secret. Full details and the re-pin steps are
-in [`COMPLIANCE.md`](COMPLIANCE.md#staying-in-sync-with-the-constitution).
+Because `the-open-state` is **public**, the check needs no credentials or secret
+setup — the workflow passes the built-in `GITHUB_TOKEN` only for API rate-limit
+headroom. Full details and the re-pin steps are in
+[`COMPLIANCE.md`](COMPLIANCE.md#staying-in-sync-with-the-constitution).
 
 ## What this is not
 
