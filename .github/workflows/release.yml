@@ -1,27 +1,40 @@
 name: Release MCPB bundle
 
-# Builds the one-click Claude Desktop bundle (alberta-assisted-living.mcpb) and
-# publishes it as a downloadable asset on a GitHub Release. The .mcpb is a build
-# artifact (gitignored), so it is produced here in CI rather than committed to
-# the tree.
+# Fully automated versioning + release of the one-click Claude Desktop bundle
+# (alberta-assisted-living.mcpb).
 #
-# Trigger either way:
-#   - manually via "Run workflow" (workflow_dispatch), choosing the tag, or
-#   - by pushing a version tag, e.g. `git tag v0.1.0 && git push origin v0.1.0`.
+# - Runs on every push to `main` that changes the server, manifest, or build
+#   (so promoting code to main cuts a release); can also be run manually.
+# - The version is computed automatically: the latest published release tag with
+#   its patch bumped (e.g. v0.1.0 -> v0.1.1). A manual run may override it to set
+#   a minor/major bump (e.g. v0.2.0).
+# - That version is stamped into the manifest before packing, so the .mcpb's
+#   reported version always matches the release tag (no drift).
+# - The .mcpb is a build artifact (gitignored) — produced here, never committed.
+#   Git tags / GitHub Releases are the source of truth for versions.
 
 on:
+  push:
+    branches: [main]
+    paths:
+      - src/**
+      - manifest.json
+      - package.json
+      - package-lock.json
+      - scripts/build.mjs
   workflow_dispatch:
     inputs:
-      tag:
-        description: "Release tag to create/publish (e.g. v0.1.0)"
-        required: true
-        default: "v0.1.0"
-  push:
-    tags:
-      - "v*"
+      version:
+        description: "Exact version to release, e.g. v0.2.0 (leave blank to auto-bump the patch)"
+        required: false
+        default: ""
 
 permissions:
   contents: write # create the release and upload the .mcpb asset
+
+concurrency:
+  group: release # serialize releases so version computation can't race
+  cancel-in-progress: false
 
 jobs:
   release:
@@ -32,6 +45,40 @@ jobs:
       - uses: actions/setup-node@v4
         with:
           node-version: "20"
+
+      - name: Resolve next version
+        id: version
+        env:
+          GH_TOKEN: ${{ github.token }}
+          OVERRIDE: ${{ github.event.inputs.version }}
+        run: |
+          set -euo pipefail
+          if [ -n "${OVERRIDE:-}" ]; then
+            NEXT="${OVERRIDE#v}"
+            echo "Manual override -> v${NEXT}"
+          else
+            LATEST="$(gh api "repos/${GITHUB_REPOSITORY}/releases/latest" --jq .tag_name 2>/dev/null || true)"
+            if [ -z "${LATEST}" ]; then
+              NEXT="$(node -p "require('./manifest.json').version")"
+              NEXT="${NEXT#v}"
+              echo "No existing release; seeding from manifest -> v${NEXT}"
+            else
+              ver="${LATEST#v}"
+              IFS='.' read -r MA MI PA <<< "${ver}"
+              PA=$((PA + 1))
+              NEXT="${MA}.${MI}.${PA}"
+              echo "Latest release ${LATEST}; bumping patch -> v${NEXT}"
+            fi
+          fi
+          echo "version=${NEXT}" >> "$GITHUB_OUTPUT"
+          echo "tag=v${NEXT}" >> "$GITHUB_OUTPUT"
+
+      - name: Stamp version into the manifest
+        env:
+          VERSION: ${{ steps.version.outputs.version }}
+        run: |
+          node -e "const fs=require('fs');const m=require('./manifest.json');m.version=process.env.VERSION;fs.writeFileSync('manifest.json',JSON.stringify(m,null,2)+'\n')"
+          echo "manifest version -> $(node -p "require('./manifest.json').version")"
 
       - name: Install dependencies
         run: npm ci
@@ -48,8 +95,9 @@ jobs:
       - name: Publish release with the .mcpb asset
         env:
           GH_TOKEN: ${{ github.token }}
-          TAG: ${{ github.event.inputs.tag || github.ref_name }}
+          TAG: ${{ steps.version.outputs.tag }}
         run: |
+          set -euo pipefail
           cat > release-notes.md <<'EOF'
           One-click Claude Desktop install bundle for the **Alberta Assisted Living** MCP server — a read-only Civic Access Protocol server over Alberta's Assisted Living Navigator.
 

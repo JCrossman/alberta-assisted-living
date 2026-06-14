@@ -12,7 +12,7 @@
  */
 
 import * as esbuild from "esbuild";
-import { mkdirSync, copyFileSync, writeFileSync, rmSync } from "node:fs";
+import { mkdirSync, copyFileSync, writeFileSync, readFileSync, rmSync } from "node:fs";
 
 rmSync("dist", { recursive: true, force: true });
 mkdirSync("dist/server", { recursive: true });
@@ -32,10 +32,15 @@ await esbuild.build({
 });
 
 copyFileSync("manifest.json", "dist/manifest.json");
+
+// Keep the bundled server's version in lockstep with the manifest (which CI
+// stamps from the release tag), so the packaged .mcpb never reports a stale
+// version regardless of how it was built.
+const { version } = JSON.parse(readFileSync("manifest.json", "utf8"));
 writeFileSync(
   "dist/server/package.json",
   JSON.stringify(
-    { name: "alberta-assisted-living-server", version: "0.1.0", private: true, type: "module" },
+    { name: "alberta-assisted-living-server", version, private: true, type: "module" },
     null,
     2
   ) + "\n"
